@@ -1,6 +1,6 @@
 import { StatusBar, StyleSheet, Text, View, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 // Constants
-import { primaryColor } from '../shared/Constants';
+import { primaryColor, whiteColor } from '../shared/Constants';
 // Icons
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,6 +17,21 @@ export default function Signup({ navigation }) {
           <Text style={styles.inputLabel}>First Name</Text>
           <TextInput style={styles.inputBox} placeholder="Enter First Name" />
         </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Last Name</Text>
+          <TextInput style={styles.inputBox} placeholder="Enter Last Name" />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Email Address</Text>
+          <TextInput style={styles.inputBox} placeholder="Enter Email Address" />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>Password</Text>
+          <TextInput style={styles.inputBox} placeholder="Create a Password" />
+        </View>
+        <TouchableOpacity style={styles.registerButton}>
+          <Text style={styles.registerText}>Register</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -35,7 +50,10 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginVertical: 30,
+    marginVertical: 40,
+  },
+  inputContainer: {
+    marginBottom: 30,
   },
   inputLabel: {
     marginBottom: 10,
@@ -46,5 +64,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-  }
+  },
+  registerButton: {
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: primaryColor,
+    paddingVertical: 15,
+    borderRadius: 10,
+    marginTop: 30,
+    marginBottom: 20,
+  },
+  registerText: {
+    color: whiteColor,
+    fontWeight: 'bold',
+  },
 });
