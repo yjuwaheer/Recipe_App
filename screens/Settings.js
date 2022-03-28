@@ -1,4 +1,6 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
+// Constants
+import { whiteColor } from '../shared/Constants';
 
 export default function Settings() {
   return (
@@ -11,7 +13,8 @@ export default function Settings() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
     flex: 1,
+    backgroundColor: whiteColor,
   },
 });

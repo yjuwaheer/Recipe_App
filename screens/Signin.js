@@ -32,8 +32,9 @@ export default function Signin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
     flex: 1,
+    backgroundColor: whiteColor,
   },
   backButton: {
     flexDirection: 'row',

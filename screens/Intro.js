@@ -26,9 +26,10 @@ export default function Intro({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 20,
+    paddingHorizontal: 20,
     flex: 1,
     justifyContent: 'space-around',
+    backgroundColor: whiteColor,
   },
   brand: {
     flexDirection: 'row',
