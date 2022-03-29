@@ -21,7 +21,8 @@ export default function AppNavigator() {
         tabBarActiveTintColor: "#000000",
         tabBarInactiveTintColor: "#A6A09C",
         headerShown: false,
-        tabBarLabelStyle: { marginBottom: 5 },
+        tabBarStyle: { paddingTop: 5},
+        tabBarLabelStyle: { paddingBottom: 5 },
       })}
     >
       <Tab.Screen
