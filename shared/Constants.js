@@ -2,7 +2,7 @@ export const primaryColor = "#FAC46A";
 export const whiteColor = "#FFFFFF";
 
 // API constants
-export const apiUrl = "https://api.edamam.com/api/recipes/v2";
+export const apiUrl = "https://api.edamam.com/api/recipes/v2?type=public";
 export const dishTypeArray = [
   { dishType: "Soup", query: "Soup", color: "#0D4770", image: require("../assets/images/soup.png") },
   { dishType: "Starter", query: "Starter", color: "#A30048", image: require("../assets/images/starter.png") },

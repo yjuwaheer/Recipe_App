@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -7,9 +8,35 @@ import {
   ScrollView,
 } from "react-native";
 // Constants
-import { primaryColor, whiteColor, dishTypeArray } from "../shared/Constants";
+import {
+  primaryColor,
+  whiteColor,
+  dishTypeArray,
+  apiUrl,
+  appId,
+  appKey,
+} from "../shared/Constants";
 
 export default function Home() {
+  // Hooks
+  const [chickenRecipes, setChickenRecipes] = useState([]);
+
+  useEffect(() => {
+    fetchChickenRecipes();
+  }, []);
+
+  const fetchChickenRecipes = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}&q=chicken&app_id=${appId}&app_key=${appKey}`
+      );
+      const responseJson = await response.json();
+      setChickenRecipes(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.userGreet}>
