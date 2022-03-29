@@ -1,6 +1,13 @@
-import { StatusBar, StyleSheet, Text, View, Image } from "react-native";
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 // Constants
-import { primaryColor, whiteColor } from "../shared/Constants";
+import { primaryColor, whiteColor, dishTypeArray } from "../shared/Constants";
 
 export default function Home() {
   return (
@@ -19,7 +26,40 @@ export default function Home() {
 
       <View style={styles.categories}>
         <Text style={styles.categoriesHeader}>Recipe Categories</Text>
-        <View style={styles.categoriesList}></View>
+        <ScrollView
+          style={styles.categoriesList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
+          {dishTypeArray.map((dType) => (
+            <View
+              key={dType.dishType}
+              style={{ ...styles.categoryCard, backgroundColor: dType.color }}
+            >
+              <Image source={dType.image} style={styles.categoryImage} />
+              <Text style={styles.categoryText}>{dType.dishType}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
+      <View style={styles.recipes}>
+        <Text style={styles.recipesHeader}>Chicken Recipes</Text>
+        <ScrollView
+          style={styles.recipesList}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
+          {dishTypeArray.map((dType) => (
+            <View
+              key={dType.dishType}
+              style={{ ...styles.categoryCard, backgroundColor: dType.color }}
+            >
+              <Image source={dType.image} style={styles.categoryImage} />
+              <Text style={styles.categoryText}>{dType.dishType}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -50,9 +90,33 @@ const styles = StyleSheet.create({
   username: {
     fontWeight: "bold",
   },
-  categories: {
-  },
+  categories: { marginBottom: 25 },
   categoriesHeader: {
     fontWeight: "bold",
+    marginBottom: 10,
   },
+  categoriesList: {},
+  categoryCard: {
+    marginRight: 20,
+    width: 120,
+    height: 120,
+    alignItems: "center",
+    justifyContent: "space-around",
+    borderRadius: 10,
+  },
+  categoryImage: {
+    width: 60,
+    height: 60,
+    resizeMode: "contain",
+  },
+  categoryText: {
+    color: whiteColor,
+    fontWeight: "bold",
+  },
+  recipes: { marginBottom: 25 },
+  recipesHeader: {
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  recipesList: {},
 });
