@@ -12,7 +12,7 @@ export default function Settings() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: StatusBar.currentHeight + 10,
     paddingHorizontal: 20,
     flex: 1,
     backgroundColor: whiteColor,
