@@ -1,5 +1,7 @@
 export const primaryColor = "#FAC46A";
 export const whiteColor = "#FFFFFF";
+export const blackColor = "#000000";
+export const lightGrayColor = "#F5F5F5";
 
 // API constants
 export const apiUrl = "https://api.edamam.com/api/recipes/v2?type=public";

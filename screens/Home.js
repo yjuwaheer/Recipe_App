@@ -6,23 +6,32 @@ import {
   View,
   Image,
   ScrollView,
+  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
+import LottieView from "lottie-react-native";
 // Constants
 import {
   primaryColor,
   whiteColor,
+  blackColor,
   dishTypeArray,
   apiUrl,
   appId,
   appKey,
+  lightGrayColor,
 } from "../shared/Constants";
 
 export default function Home() {
   // Hooks
-  const [chickenRecipes, setChickenRecipes] = useState([]);
+  const [chickenRecipes, setChickenRecipes] = useState();
+  const [vegetarianRecipes, setVegetarianRecipes] = useState();
+  const [veganRecipes, setVeganRecipes] = useState();
 
   useEffect(() => {
     fetchChickenRecipes();
+    fetchVegetarianRecipes();
+    fetchVeganRecipes();
   }, []);
 
   const fetchChickenRecipes = async () => {
@@ -31,7 +40,31 @@ export default function Home() {
         `${apiUrl}&q=chicken&app_id=${appId}&app_key=${appKey}`
       );
       const responseJson = await response.json();
-      setChickenRecipes(responseJson);
+      setChickenRecipes(responseJson.hits);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchVegetarianRecipes = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}&q=vegetable&app_id=${appId}&app_key=${appKey}`
+      );
+      const responseJson = await response.json();
+      setVegetarianRecipes(responseJson.hits);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchVeganRecipes = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}&q=vegan&app_id=${appId}&app_key=${appKey}`
+      );
+      const responseJson = await response.json();
+      setVeganRecipes(responseJson.hits);
     } catch (error) {
       console.error(error);
     }
@@ -51,43 +84,128 @@ export default function Home() {
         </Text>
       </View>
 
-      <View style={styles.categories}>
-        <Text style={styles.categoriesHeader}>Recipe Categories</Text>
-        <ScrollView
-          style={styles.categoriesList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          {dishTypeArray.map((dType) => (
-            <View
-              key={dType.dishType}
-              style={{ ...styles.categoryCard, backgroundColor: dType.color }}
-            >
-              <Image source={dType.image} style={styles.categoryImage} />
-              <Text style={styles.categoryText}>{dType.dishType}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.categories}>
+          <Text style={styles.categoriesHeader}>Recipe Categories</Text>
+          <ScrollView
+            style={styles.categoriesList}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {dishTypeArray.map((dType) => (
+              <TouchableOpacity
+                key={dType.dishType}
+                style={{ ...styles.categoryCard, backgroundColor: dType.color }}
+              >
+                <Image source={dType.image} style={styles.categoryImage} />
+                <Text style={styles.categoryText}>{dType.dishType}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
 
-      <View style={styles.recipes}>
-        <Text style={styles.recipesHeader}>Chicken Recipes</Text>
-        <ScrollView
-          style={styles.recipesList}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          {dishTypeArray.map((dType) => (
-            <View
-              key={dType.dishType}
-              style={{ ...styles.categoryCard, backgroundColor: dType.color }}
-            >
-              <Image source={dType.image} style={styles.categoryImage} />
-              <Text style={styles.categoryText}>{dType.dishType}</Text>
+        <View style={styles.recipes}>
+          <Text style={styles.recipesHeader}>Chicken Recipes</Text>
+          {!chickenRecipes && (
+            <View style={styles.recipePlaceholder}>
+              <LottieView
+                source={require("../assets/loader.json")}
+                autoPlay
+                loop
+              />
             </View>
-          ))}
-        </ScrollView>
-      </View>
+          )}
+          <ScrollView
+            style={styles.recipesList}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {chickenRecipes &&
+              chickenRecipes.map((recipe) => (
+                <TouchableOpacity
+                  key={Math.random()}
+                  style={{ ...styles.recipeCard }}
+                >
+                  <ImageBackground
+                    source={{ uri: recipe.recipe.image }}
+                    resizeMode="cover"
+                    style={styles.recipeImage}
+                  >
+                    <Text style={styles.recipeText}>{recipe.recipe.label}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+          </ScrollView>
+        </View>
+
+        <View style={styles.recipes}>
+          <Text style={styles.recipesHeader}>Vegetarian Recipes</Text>
+          {!vegetarianRecipes && (
+            <View style={styles.recipePlaceholder}>
+              <LottieView
+                source={require("../assets/loader.json")}
+                autoPlay
+                loop
+              />
+            </View>
+          )}
+          <ScrollView
+            style={styles.recipesList}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {vegetarianRecipes &&
+              vegetarianRecipes.map((recipe) => (
+                <TouchableOpacity
+                  key={Math.random()}
+                  style={{ ...styles.recipeCard }}
+                >
+                  <ImageBackground
+                    source={{ uri: recipe.recipe.image }}
+                    resizeMode="cover"
+                    style={styles.recipeImage}
+                  >
+                    <Text style={styles.recipeText}>{recipe.recipe.label}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+          </ScrollView>
+        </View>
+
+        <View style={styles.recipes}>
+          <Text style={styles.recipesHeader}>Vegan Recipes</Text>
+          {!veganRecipes && (
+            <View style={styles.recipePlaceholder}>
+              <LottieView
+                source={require("../assets/loader.json")}
+                autoPlay
+                loop
+              />
+            </View>
+          )}
+          <ScrollView
+            style={styles.recipesList}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {veganRecipes &&
+              veganRecipes.map((recipe) => (
+                <TouchableOpacity
+                  key={Math.random()}
+                  style={{ ...styles.recipeCard }}
+                >
+                  <ImageBackground
+                    source={{ uri: recipe.recipe.image }}
+                    resizeMode="cover"
+                    style={styles.recipeImage}
+                  >
+                    <Text style={styles.recipeText}>{recipe.recipe.label}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -146,4 +264,37 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   recipesList: {},
+  recipePlaceholder: {
+    backgroundColor: lightGrayColor,
+    width: 300,
+    height: 150,
+    borderRadius: 10,
+    opacity: 0.7,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  recipeImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    opacity: 0.8,
+    backgroundColor: blackColor,
+  },
+  recipeCard: {
+    marginRight: 20,
+    width: 300,
+    height: 150,
+    alignItems: "center",
+    justifyContent: "space-around",
+    borderRadius: 10,
+  },
+  recipeText: {
+    position: "absolute",
+    bottom: 0,
+    color: whiteColor,
+    backgroundColor: blackColor,
+    fontSize: 17,
+    fontWeight: "bold",
+    padding: 7,
+  },
 });
