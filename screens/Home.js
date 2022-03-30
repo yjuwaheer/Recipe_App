@@ -293,8 +293,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     color: whiteColor,
     backgroundColor: blackColor,
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: "bold",
-    padding: 7,
+    padding: 5,
+    margin: 5,
+    borderRadius: 10,
   },
 });
