@@ -25,7 +25,7 @@ export default function AppNavigator() {
         tabBarLabelStyle: { paddingBottom: 5 },
       })}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -34,7 +34,7 @@ export default function AppNavigator() {
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Search"
         component={Search}
