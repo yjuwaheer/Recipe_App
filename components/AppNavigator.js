@@ -35,7 +35,7 @@ export default function AppNavigator() {
           ),
         }}
       /> */}
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Search"
         component={Search}
         options={{
@@ -44,7 +44,7 @@ export default function AppNavigator() {
             <Ionicons name="search" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Add"
         component={Add}

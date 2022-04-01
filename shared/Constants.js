@@ -3,7 +3,7 @@ export const lightPrimaryColor = "#FAF7F1";
 export const whiteColor = "#FFFFFF";
 export const blackColor = "#000000";
 export const lightGrayColor = "#F5F5F5";
-export const darkerGrayColor = "#6C6D71";
+export const darkerGrayColor = "#8B8B8B";
 export const lightPinkColor = "#F3E2E2";
 
 // API constants
