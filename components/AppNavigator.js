@@ -21,11 +21,11 @@ export default function AppNavigator() {
         tabBarActiveTintColor: "#000000",
         tabBarInactiveTintColor: "#A6A09C",
         headerShown: false,
-        tabBarStyle: { paddingTop: 5},
+        tabBarStyle: { paddingTop: 5 },
         tabBarLabelStyle: { paddingBottom: 5 },
       })}
     >
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -34,8 +34,8 @@ export default function AppNavigator() {
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
         }}
-      /> */}
-      {/* <Tab.Screen
+      />
+      <Tab.Screen
         name="Search"
         component={Search}
         options={{
@@ -44,14 +44,18 @@ export default function AppNavigator() {
             <Ionicons name="search" size={size} color={color} />
           ),
         }}
-      /> */}
+      />
       <Tab.Screen
         name="Add"
         component={Add}
         options={{
           tabBarLabel: "Add",
           tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name={focused ? "add-circle" : "add-circle-outline"} size={size} color={color} />
+            <Ionicons
+              name={focused ? "add-circle" : "add-circle-outline"}
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
@@ -61,7 +65,11 @@ export default function AppNavigator() {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="face-profile" size={size} color={color} />
+            <MaterialCommunityIcons
+              name="face-profile"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
