@@ -1,15 +1,28 @@
-import { StatusBar, StyleSheet, Text, View, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  TextInput,
+} from "react-native";
 // Constants
-import { primaryColor, whiteColor } from '../shared/Constants';
+import { primaryColor, whiteColor } from "../shared/Constants";
 // Icons
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Signup({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => {navigation.goBack()}}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
         <Ionicons name="chevron-back" size={24} color={primaryColor} />
-        <Text>Back</Text>
+        <Text style={styles.backText}>Back</Text>
       </TouchableOpacity>
       <ScrollView>
         <Text style={styles.header}>Register an account</Text>
@@ -23,7 +36,10 @@ export default function Signup({ navigation }) {
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Email Address</Text>
-          <TextInput style={styles.inputBox} placeholder="Enter Email Address" />
+          <TextInput
+            style={styles.inputBox}
+            placeholder="Enter Email Address"
+          />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Password</Text>
@@ -45,12 +61,15 @@ const styles = StyleSheet.create({
     backgroundColor: whiteColor,
   },
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  backText: {
+    fontSize: 15,
   },
   header: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginVertical: 40,
   },
   inputContainer: {
@@ -67,8 +86,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   registerButton: {
-    alignItems: 'center',
-    width: '100%',
+    alignItems: "center",
+    width: "100%",
     backgroundColor: primaryColor,
     paddingVertical: 15,
     borderRadius: 10,
@@ -77,6 +96,6 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: whiteColor,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
