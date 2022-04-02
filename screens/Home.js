@@ -213,7 +213,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBar.currentHeight + 10,
-    paddingHorizontal: 20,
+    paddingLeft: 20,
     flex: 1,
     backgroundColor: whiteColor,
   },
