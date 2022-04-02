@@ -67,7 +67,7 @@ export default function CategoryRecipes({ navigation, route }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.recipeCard}
-      onPress={() => navigation.navigate("Recipe", { recipe: item.recipe })}
+      onPress={() => navigation.navigate("RecipeHome", { recipe: item.recipe })}
     >
       <Image source={{ uri: item.recipe.image }} style={styles.recipeImage} />
       <View style={styles.recipeInfo}>

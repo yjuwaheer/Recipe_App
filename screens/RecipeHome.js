@@ -19,7 +19,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 
-export default function Recipe({ navigation, route }) {
+export default function RecipeHome({ navigation, route }) {
   return (
     <View style={styles.container}>
       <ImageBackground
