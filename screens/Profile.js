@@ -32,14 +32,17 @@ export default function Profile() {
   }, []);
 
   const fetchChickenRecipes = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         `${apiUrl}&q=chicken&app_id=${appId}&app_key=${appKey}`
       );
       const responseJson = await response.json();
       setChickenRecipes(responseJson.hits);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
