@@ -5,8 +5,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // Icons
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+// Navigators
+import HomeNavigator from "./HomeNavigator";
 // Screens
-import Home from "../screens/Home";
 import Search from "../screens/Search";
 import Add from "../screens/Add";
 import Profile from "../screens/Profile";
@@ -26,8 +27,8 @@ export default function AppNavigator() {
       })}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeNavigator"
+        component={HomeNavigator}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (

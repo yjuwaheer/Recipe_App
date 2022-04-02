@@ -22,7 +22,7 @@ import {
   lightGrayColor,
 } from "../shared/Constants";
 
-export default function Home() {
+export default function Home({ navigation }) {
   // Hooks
   const [chickenRecipes, setChickenRecipes] = useState();
   const [vegetarianRecipes, setVegetarianRecipes] = useState();
@@ -96,9 +96,15 @@ export default function Home() {
               <TouchableOpacity
                 key={dType.dishType}
                 style={{ ...styles.categoryCard, backgroundColor: dType.color }}
+                onPress={() =>
+                  navigation.navigate("CategoryRecipes", {
+                    dishType: dType.dishType,
+                    query: dType.query,
+                  })
+                }
               >
                 <Image source={dType.image} style={styles.categoryImage} />
-                <Text style={styles.categoryText}>{dType.dishType}</Text>
+                <Text style={styles.categoryText}>{dType.query}</Text>
               </TouchableOpacity>
             ))}
           </ScrollView>

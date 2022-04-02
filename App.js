@@ -1,14 +1,14 @@
-import 'react-native-gesture-handler';
-import { StatusBar, StyleSheet } from 'react-native';
+import "react-native-gesture-handler";
+import { StatusBar, StyleSheet } from "react-native";
 // Nav
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-// Screen
-import Intro from './screens/Intro';
-import Signin from './screens/Signin';
-import Signup from './screens/Signup';
-
-import AppNavigator from './components/AppNavigator';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+// Navigators
+import AppNavigator from "./components/AppNavigator";
+// Screens
+import Intro from "./screens/Intro";
+import Signin from "./screens/Signin";
+import Signup from "./screens/Signup";
 
 const Stack = createStackNavigator();
 

@@ -27,14 +27,14 @@ export const dishTypeArray = [
     color: "#9F7BC5",
     image: require("../assets/images/main.png"),
   },
+  // {
+  //   dishType: "Side dish",
+  //   query: "Side",
+  //   color: "#720F6B",
+  //   image: require("../assets/images/side.png"),
+  // },
   {
-    dishType: "Side dish",
-    query: "Side",
-    color: "#720F6B",
-    image: require("../assets/images/side.png"),
-  },
-  {
-    dishType: "Biscuits",
+    dishType: "Biscuits and cookies",
     query: "Biscuits",
     color: "#AA6E02",
     image: require("../assets/images/biscuit.png"),
@@ -52,7 +52,7 @@ export const dishTypeArray = [
     image: require("../assets/images/cereal.png"),
   },
   {
-    dishType: "Sauces",
+    dishType: "Condiments and sauces",
     query: "Sauces",
     color: "#D24800",
     image: require("../assets/images/sauce.png"),
@@ -87,12 +87,12 @@ export const dishTypeArray = [
     color: "#218B6A",
     image: require("../assets/images/sandwich.png"),
   },
-  {
-    dishType: "Sweets",
-    query: "Sweets",
-    color: "#75D456",
-    image: require("../assets/images/sweet.png"),
-  },
+  // {
+  //   dishType: "Sweets",
+  //   query: "Sweets",
+  //   color: "#75D456",
+  //   image: require("../assets/images/sweet.png"),
+  // },
 ];
 
 // TO REMOVE ENVIROMENT VARIABLES
