@@ -97,11 +97,13 @@ export default function Search() {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={24} color={primaryColor} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search for Recipe..."
         />
+        <TouchableOpacity style={styles.searchButton}>
+          <Ionicons name="search" size={24} color={whiteColor} />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.filterButtonContainer}>
@@ -158,14 +160,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   searchInput: {
-    width: "90%",
+    width: "78%",
     marginLeft: 10,
     padding: 10,
-    borderLeftWidth: 0.5,
+    borderBottomWidth: 0.5,
     borderColor: primaryColor,
     fontSize: 15,
   },
-  filterButtonContainer: { marginTop: 10, width: 90, alignSelf: "flex-end" },
+  searchButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "15%",
+    backgroundColor: primaryColor,
+    padding: 10,
+    borderRadius: 10,
+    marginLeft: 10,
+  },
+  filterButtonContainer: { marginTop: 15, width: 90, alignSelf: "flex-end" },
   filterButton: {
     alignItems: "center",
     justifyContent: "space-around",
