@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     height: "60%",
   },
   recipesList: {
-    marginTop: 10,
+    paddingTop: 20,
   },
   recipeCard: {
     flexDirection: "row",
