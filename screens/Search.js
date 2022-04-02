@@ -30,7 +30,7 @@ export default function Search() {
   const [loading, setLoading] = useState();
   const [loadingMore, setLoadingMore] = useState(false);
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState([]);
   const [nextResultsLink, setNextResultsLink] = useState("");
 
   useEffect(() => {
