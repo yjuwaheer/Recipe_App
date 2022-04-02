@@ -168,6 +168,9 @@ export default function Home({ navigation }) {
                 <TouchableOpacity
                   key={Math.random()}
                   style={{ ...styles.recipeCard }}
+                  onPress={() =>
+                    navigation.navigate("RecipeHome", { recipe: recipe.recipe })
+                  }
                 >
                   <ImageBackground
                     source={{ uri: recipe.recipe.image }}
@@ -202,6 +205,9 @@ export default function Home({ navigation }) {
                 <TouchableOpacity
                   key={Math.random()}
                   style={{ ...styles.recipeCard }}
+                  onPress={() =>
+                    navigation.navigate("RecipeHome", { recipe: recipe.recipe })
+                  }
                 >
                   <ImageBackground
                     source={{ uri: recipe.recipe.image }}
