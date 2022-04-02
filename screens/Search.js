@@ -154,7 +154,7 @@ export default function Search() {
           style={styles.recipesList}
           data={searchResults}
           renderItem={renderItem}
-          keyExtractor={(item) => item.recipe.label}
+          keyExtractor={(item, index) => `${item.recipe.label}-${index}`}
           ListFooterComponent={
             <TouchableOpacity
               disabled={loadingMore}
