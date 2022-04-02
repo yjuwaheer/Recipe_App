@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   StatusBar,
   StyleSheet,
@@ -8,6 +7,7 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
+import { ProgressChart } from "react-native-chart-kit";
 // Constants
 import {
   blackColor,
@@ -20,6 +20,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 
 export default function RecipeHome({ navigation, route }) {
+  // Pre calculation
+  const totalFatCarbsProtein =
+    route.params.recipe.totalNutrients.FAT.quantity +
+    route.params.recipe.totalNutrients.CHOCDF.quantity +
+    route.params.recipe.totalNutrients.PROCNT.quantity;
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -50,6 +56,77 @@ export default function RecipeHome({ navigation, route }) {
           <Text>From {route.params.recipe.source}</Text>
           <EvilIcons name="external-link" size={16} color={darkerGrayColor} />
         </Text>
+
+        <View style={styles.chartsContainer}>
+          <View style={styles.singleChart}>
+            <ProgressChart
+              data={{
+                data: [
+                  route.params.recipe.totalNutrients.FAT.quantity /
+                    totalFatCarbsProtein,
+                ],
+              }}
+              width={100}
+              height={100}
+              strokeWidth={16}
+              radius={32}
+              chartConfig={{
+                backgroundGradientFrom: "#ffffff",
+                backgroundGradientTo: "#ffffff",
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(232, 103, 38, ${opacity})`,
+              }}
+              hideLegend={true}
+            />
+            <Text style={styles.chartLabel}>Fat</Text>
+          </View>
+
+          <View style={styles.singleChart}>
+            <ProgressChart
+              data={{
+                data: [
+                  route.params.recipe.totalNutrients.CHOCDF.quantity /
+                    totalFatCarbsProtein,
+                ],
+              }}
+              width={100}
+              height={100}
+              strokeWidth={16}
+              radius={32}
+              chartConfig={{
+                backgroundGradientFrom: "#ffffff",
+                backgroundGradientTo: "#ffffff",
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(255, 196, 106, ${opacity})`,
+              }}
+              hideLegend={true}
+            />
+            <Text style={styles.chartLabel}>Carbs</Text>
+          </View>
+
+          <View style={styles.singleChart}>
+            <ProgressChart
+              data={{
+                data: [
+                  route.params.recipe.totalNutrients.PROCNT.quantity /
+                    totalFatCarbsProtein,
+                ],
+              }}
+              width={100}
+              height={100}
+              strokeWidth={16}
+              radius={32}
+              chartConfig={{
+                backgroundGradientFrom: "#ffffff",
+                backgroundGradientTo: "#ffffff",
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(134, 208, 30, ${opacity})`,
+              }}
+              hideLegend={true}
+            />
+            <Text style={styles.chartLabel}>Protein</Text>
+          </View>
+        </View>
 
         <View style={styles.ingredientsContainer}>
           <Text style={styles.subHeader}>Ingredients</Text>
@@ -119,6 +196,19 @@ const styles = StyleSheet.create({
   },
   source: {
     color: darkerGrayColor,
+    fontWeight: "bold",
+    fontStyle: "italic",
+    letterSpacing: 1,
+  },
+  chartsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20,
+  },
+  singleChart: {
+    alignItems: "center",
+  },
+  chartLabel: {
     fontWeight: "bold",
     fontStyle: "italic",
     letterSpacing: 1,
