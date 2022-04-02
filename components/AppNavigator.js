@@ -25,7 +25,7 @@ export default function AppNavigator() {
         tabBarLabelStyle: { paddingBottom: 5 },
       })}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -34,8 +34,8 @@ export default function AppNavigator() {
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
         }}
-      />
-      <Tab.Screen
+      /> */}
+      {/* <Tab.Screen
         name="Search"
         component={Search}
         options={{
@@ -44,8 +44,8 @@ export default function AppNavigator() {
             <Ionicons name="search" size={size} color={color} />
           ),
         }}
-      />
-      <Tab.Screen
+      /> */}
+      {/* <Tab.Screen
         name="Add"
         component={Add}
         options={{
@@ -58,8 +58,8 @@ export default function AppNavigator() {
             />
           ),
         }}
-      />
-      <Tab.Screen
+      /> */}
+      {/* <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -72,7 +72,7 @@ export default function AppNavigator() {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Settings"
         component={Settings}
