@@ -35,7 +35,7 @@ export default function Search() {
 
   useEffect(() => {
     fetchSearchResults("popular");
-  }, [search]);
+  }, []);
 
   const fetchSearchResults = async (searchText) => {
     setLoading(true);
@@ -45,7 +45,10 @@ export default function Search() {
       );
       const responseJson = await response.json();
       setSearchResults(responseJson.hits);
-      setNextResultsLink(responseJson._links.next.href);
+      // Check if there is any results
+      if (responseJson.hits.length > 0) {
+        setNextResultsLink(responseJson._links.next.href);
+      }
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -64,6 +67,12 @@ export default function Search() {
     } catch (error) {
       console.error(error);
       setLoadingMore(false);
+    }
+  };
+
+  const onSearchHandler = () => {
+    if (search.length > 0) {
+      fetchSearchResults(search);
     }
   };
 
@@ -99,9 +108,13 @@ export default function Search() {
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
+          onChangeText={(text) => setSearch(text)}
           placeholder="Search for Recipe..."
         />
-        <TouchableOpacity style={styles.searchButton}>
+        <TouchableOpacity
+          style={styles.searchButton}
+          onPress={() => onSearchHandler()}
+        >
           <Ionicons name="search" size={24} color={whiteColor} />
         </TouchableOpacity>
       </View>
@@ -121,7 +134,21 @@ export default function Search() {
         />
       )}
 
-      {!loading && (
+      {!loading && searchResults.length === 0 && (
+        <View style={styles.noResultContainer}>
+          <View>
+            <LottieView
+              source={require("../assets/sadSushi.json")}
+              autoPlay
+              loop
+              style={styles.noResultAnimation}
+            />
+          </View>
+          <Text style={styles.noResultText}>Sorry! No Results Found :(</Text>
+        </View>
+      )}
+
+      {!loading && searchResults.length > 0 && (
         <FlatList
           showsVerticalScrollIndicator={false}
           style={styles.recipesList}
@@ -185,6 +212,19 @@ const styles = StyleSheet.create({
     borderColor: primaryColor,
     borderRadius: 5,
     width: "100%",
+  },
+  noResultContainer: {
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  noResultAnimation: {
+    width: 100,
+    height: 100,
+  },
+  noResultText: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
   recipesList: {
     marginTop: 10,
