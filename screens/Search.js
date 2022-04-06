@@ -37,7 +37,7 @@ export default function Search() {
   const [searchResults, setSearchResults] = useState([]);
   const [nextResultsLink, setNextResultsLink] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
-  const [mealType, setMealType] = useState([]);
+  const [selectedMealTypes, setSelectedMealTypes] = useState([]);
 
   useEffect(() => {
     fetchSearchResults("popular");
@@ -83,7 +83,14 @@ export default function Search() {
   };
 
   const handleFilterList = (mealType) => {
-    console.log(mealType);
+    let tempSelection = selectedMealTypes;
+    if (tempSelection.includes(mealType)) {
+      tempSelection = tempSelection.filter((item) => item !== mealType);
+    } else {
+      tempSelection.push(mealType);
+    }
+
+    set;
   };
 
   const renderItem = ({ item }) => (
