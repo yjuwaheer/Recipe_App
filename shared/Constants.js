@@ -95,6 +95,29 @@ export const dishTypeArray = [
   // },
 ];
 
+export const mealTypeArray = [
+  {
+    id: 1,
+    mealType: "Breakfast",
+  },
+  {
+    id: 2,
+    mealType: "Lunch",
+  },
+  {
+    id: 3,
+    mealType: "Dinner",
+  },
+  {
+    id: 4,
+    mealType: "Snack",
+  },
+  {
+    id: 5,
+    mealType: "Teatime",
+  },
+];
+
 // TO REMOVE ENVIROMENT VARIABLES
 export const appId = "d4228e1b";
 export const appKey = "b76403a12bf328d87c3dd4240017a854";

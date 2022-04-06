@@ -10,6 +10,7 @@ import {
   FlatList,
 } from "react-native";
 import LottieView from "lottie-react-native";
+import Modal from "react-native-modal";
 // Constants
 import {
   lightPrimaryColor,
@@ -21,17 +22,22 @@ import {
   lightPinkColor,
   darkerGrayColor,
   blackColor,
+  lightGrayColor,
+  mealTypeArray,
 } from "../shared/Constants";
 // Icons
 import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function Search() {
   // Hooks
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [nextResultsLink, setNextResultsLink] = useState("");
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [mealType, setMealType] = useState([]);
 
   useEffect(() => {
     fetchSearchResults("popular");
@@ -74,6 +80,10 @@ export default function Search() {
     if (search.length > 0) {
       fetchSearchResults(search);
     }
+  };
+
+  const handleFilterList = (mealType) => {
+    console.log(mealType);
   };
 
   const renderItem = ({ item }) => (
@@ -120,7 +130,12 @@ export default function Search() {
       </View>
 
       <View style={styles.filterButtonContainer}>
-        <TouchableOpacity style={styles.filterButton}>
+        <TouchableOpacity
+          style={styles.filterButton}
+          onPress={() => {
+            setModalVisible((prev) => !prev);
+          }}
+        >
           <Ionicons name="filter" size={24} color={primaryColor} />
           <Text>Filter</Text>
         </TouchableOpacity>
@@ -168,6 +183,34 @@ export default function Search() {
           }
         />
       )}
+
+      <Modal
+        isVisible={isModalVisible}
+        backdropColor={whiteColor}
+        style={styles.modalStyle}
+      >
+        <View style={styles.modalContent}>
+          <TouchableOpacity
+            style={styles.modalCloseButton}
+            onPress={() => {
+              setModalVisible((prev) => !prev);
+            }}
+          >
+            <AntDesign name="closecircleo" size={24} color={blackColor} />
+          </TouchableOpacity>
+          <Text style={styles.modalTitle}>Meal Type</Text>
+
+          {mealTypeArray.map((mealType) => (
+            <TouchableOpacity
+              key={mealType.id}
+              style={styles.itemPill}
+              onPress={() => handleFilterList(mealType.mealType)}
+            >
+              <Text style={styles.itemPillText}>{mealType.mealType}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -270,6 +313,35 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   loadMoreText: {
+    color: primaryColor,
+    fontWeight: "bold",
+  },
+  modalStyle: {
+    justifyContent: "flex-end",
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: lightGrayColor,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
+  modalCloseButton: {
+    alignSelf: "flex-end",
+  },
+  modalTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  itemPill: {
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: primaryColor,
+    borderRadius: 10,
+  },
+  itemPillText: {
     color: primaryColor,
     fontWeight: "bold",
   },
