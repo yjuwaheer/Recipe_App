@@ -195,6 +195,8 @@ export default function Search() {
         isVisible={isModalVisible}
         backdropColor={whiteColor}
         style={styles.modalStyle}
+        onBackButtonPress={() => setModalVisible((prev) => !prev)}
+        onBackdropPress={() => setModalVisible((prev) => !prev)}
       >
         <View style={styles.modalContent}>
           <TouchableOpacity
