@@ -48,7 +48,7 @@ export default function RecipeHome({ navigation, route }) {
         <Text
           style={styles.source}
           onPress={() =>
-            navigation.navigate("RecipeWebview", {
+            navigation.navigate("RecipeHomeWebview", {
               url: route.params.recipe.url,
             })
           }
@@ -142,7 +142,7 @@ export default function RecipeHome({ navigation, route }) {
           <TouchableOpacity
             style={styles.getInstructions}
             onPress={() =>
-              navigation.navigate("RecipeWebview", {
+              navigation.navigate("RecipeHomeWebview", {
                 url: route.params.recipe.url,
               })
             }

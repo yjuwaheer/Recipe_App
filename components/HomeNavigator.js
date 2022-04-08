@@ -6,7 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import CategoryRecipes from "../screens/CategoryRecipes";
 import RecipeHome from "../screens/RecipeHome";
-import RecipeWebview from "../screens/RecipeWebview";
+import RecipeHomeWebview from "../screens/RecipeHomeWebview";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ export default function HomeNavigator() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="CategoryRecipes" component={CategoryRecipes} />
       <Stack.Screen name="RecipeHome" component={RecipeHome} />
-      <Stack.Screen name="RecipeWebview" component={RecipeWebview} />
+      <Stack.Screen name="RecipeHomeWebview" component={RecipeHomeWebview} />
     </Stack.Navigator>
   );
 }
