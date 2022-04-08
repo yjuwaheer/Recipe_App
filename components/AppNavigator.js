@@ -7,8 +7,8 @@ import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 // Navigators
 import HomeNavigator from "./HomeNavigator";
+import SearchNavigator from "./SearchNavigator";
 // Screens
-import Search from "../screens/Search";
 import Add from "../screens/Add";
 import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
@@ -37,8 +37,8 @@ export default function AppNavigator() {
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="SearchNavigator"
+        component={SearchNavigator}
         options={{
           tabBarLabel: "Search",
           tabBarIcon: ({ color, size }) => (

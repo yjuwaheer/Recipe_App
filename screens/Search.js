@@ -29,7 +29,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Search() {
+export default function Search({ navigation }) {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -94,7 +94,12 @@ export default function Search() {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.recipeCard}>
+    <TouchableOpacity
+      style={styles.recipeCard}
+      onPress={() =>
+        navigation.navigate("RecipeSearch", { recipe: item.recipe })
+      }
+    >
       <Image source={{ uri: item.recipe.image }} style={styles.recipeImage} />
       <View style={styles.recipeInfo}>
         <Text style={styles.recipeTitle}>{item.recipe.label}</Text>
