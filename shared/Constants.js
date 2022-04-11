@@ -118,6 +118,6 @@ export const mealTypeArray = [
   },
 ];
 
-// TO REMOVE ENVIROMENT VARIABLES
-export const appId = "d4228e1b";
-export const appKey = "b76403a12bf328d87c3dd4240017a854";
+// ENVIROMENT VARIABLES
+export const appId = "";
+export const appKey = "";
