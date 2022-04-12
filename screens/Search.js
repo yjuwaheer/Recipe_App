@@ -33,7 +33,7 @@ export default function Search({ navigation }) {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("popular");
   const [searchResults, setSearchResults] = useState([]);
   const [nextResultsLink, setNextResultsLink] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
@@ -90,7 +90,39 @@ export default function Search({ navigation }) {
       tempSelection.push(mealType);
     }
 
-    set;
+    setSelectedMealTypes(tempSelection);
+    setModalVisible(false);
+
+    // If there is no meal type selected, show all results
+    if (tempSelection.length === 0) {
+      fetchSearchResults(search);
+    } else {
+      fetchFilteredSearchResults(tempSelection);
+    }
+  };
+
+  const fetchFilteredSearchResults = async (mealTypes) => {
+    let builtFilter = "";
+    mealTypes.forEach((item) => {
+      builtFilter += `&mealType=${item}`;
+    });
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${apiUrl}&q=${search}&app_id=${appId}&app_key=${appKey}${builtFilter}`
+      );
+      const responseJson = await response.json();
+      setSearchResults(responseJson.hits);
+      // Check if there is any results
+      if (responseJson.hits.length > 0) {
+        setNextResultsLink(responseJson._links.next.href);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
 
   const renderItem = ({ item }) => (
@@ -217,10 +249,22 @@ export default function Search({ navigation }) {
           {mealTypeArray.map((mealType) => (
             <TouchableOpacity
               key={mealType.id}
-              style={styles.itemPill}
+              style={
+                selectedMealTypes.includes(mealType.mealType)
+                  ? styles.itemPillSelected
+                  : styles.itemPill
+              }
               onPress={() => handleFilterList(mealType.mealType)}
             >
-              <Text style={styles.itemPillText}>{mealType.mealType}</Text>
+              <Text
+                style={
+                  selectedMealTypes.includes(mealType.mealType)
+                    ? styles.itemPillTextSelected
+                    : styles.itemPillText
+                }
+              >
+                {mealType.mealType}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -357,6 +401,17 @@ const styles = StyleSheet.create({
   },
   itemPillText: {
     color: primaryColor,
+    fontWeight: "bold",
+  },
+  itemPillSelected: {
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: primaryColor,
+  },
+  itemPillTextSelected: {
+    color: whiteColor,
     fontWeight: "bold",
   },
 });
